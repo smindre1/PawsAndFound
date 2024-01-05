@@ -12,20 +12,29 @@ A lost and found pet blog.
     }
 
 	post{
-        post_id
-        pet_id
+        postId
+        petId
         message
         location(city) 
+        [Post]
+    }
+
+    replies{
+        id
+        message
+        username ref: User
+        postId ref: Post
     }
 
     pets{
         id
-        type{lost: {name}, found, shelter}
+        type{lost, found, shelter}
+        name
         img
-        last_seen
+        lastSeen
         species
     }
 
     shelters{
-    pets_list{pet_id}}
+    petsList{petId}}
 
