@@ -8,15 +8,15 @@ A lost and found pet blog.
         username
         email
         password
-        post{}
+        posts{}
     }
 
 	post{
-        postId
+        id
         petId
         message
         location(city) 
-        [Post]
+        [replies]
     }
 
     replies{
