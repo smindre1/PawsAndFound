@@ -1,10 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const postSchema = new Schema({
-    postId: {
-        type: ObjectId,
-        required: true,
-    },
     message: {
         type: String,
         required: true,
@@ -15,11 +11,17 @@ const postSchema = new Schema({
     },
     petId: {
         type: Schema.Types.ObjectId,
-        ref: 'Pet'
+        ref: 'Pets'
       },
     replies: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Replies'
+        message: {
+            type: String,
+            required: true,
+        },
+        username: {
+            type: String,
+            required: true,
+        },
       }]
 });
 
