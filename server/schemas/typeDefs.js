@@ -53,9 +53,9 @@ const typeDefs = `
         delPost(postId: ID!)
         updatePost(postId: ID!, messge: String!, location: String!): Post
 
-        addPet(type: String!, name: String, img: String!, lastSeen: String, species: String!): Pet
+        addPet(type: String!, name: String, img: String!, lastSeen: String, species: String!): Pets
         delPet(petId: ID!)
-        updatePet(petid: ID!, type: String!, name: String, img: String!, LastSeen: String, Species: String!): Pet
+        updatePet(petid: ID!, type: String!, name: String, img: String!, LastSeen: String, Species: String!): Pets
 
         addreply( postId: ID!, message: String!, username: String!): Post
     }
