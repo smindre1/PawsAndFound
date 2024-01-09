@@ -51,13 +51,8 @@ const typeDefs = `
 
         addPost(message: String!, location: String!, petId: [Pets]): Post
         delPost(postId: ID!)
-        updatePost(postId: ID!, messge: String!, location: String!): Post
-
-        addPet(type: String!, name: String, img: String!, lastSeen: String, species: String!): Pets
-        delPet(petId: ID!)
-        updatePet(petid: ID!, type: String!, name: String, img: String!, LastSeen: String, Species: String!): Pets
-
-        addreply( postId: ID!, message: String!, username: String!): Post
+               
+        addReply( postId: ID!, message: String!, username: String!): Post
     }
 
 `;
