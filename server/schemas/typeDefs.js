@@ -35,12 +35,21 @@ const typeDefs = `
         user: User
     }
 
+    input PetData {
+        _id: ID!
+        type: String!
+        name: String
+        img: String!
+        lastSeen: String!
+        species: String!
+    }
+
     type Query {
         users: [User]
         user(username: String!): User
         me: User
-        pets: [Pets]: [Pets]
-        posts: [Post]: [Post]
+        pets: [Pets]
+        posts: [Post]
         pet(petId: ID!): Pets
         post(postId: ID!): Post
     }
@@ -49,10 +58,12 @@ const typeDefs = `
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-        addPost(message: String!, location: String!, petId: [Pets]): Post
-        delPost(postId: ID!)
+        addPost(message: String!, location: String!, petId: PetData): Post
+        delPost(postId: ID!): Auth
                
         addReply( postId: ID!, message: String!, username: String!): Post
     }
 
 `;
+
+module.exports = typeDefs;
