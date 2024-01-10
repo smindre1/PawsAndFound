@@ -1,19 +1,23 @@
+//double check that all the necessary packages are in the package.json
 import { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-import { createUser } from '../utils/API';
+import { useMutation } from '@apollo/client';
+//Check mutations for this...
+import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const SignupForm = () => {
-  // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
+  //Check that addUser is what the muttion is called
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  // const [validated] = useState(false);
+  // const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
     setUserFormData({ ...userFormData, [name]: value });
   };
 
