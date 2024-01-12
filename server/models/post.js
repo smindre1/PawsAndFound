@@ -9,9 +9,26 @@ const postSchema = new Schema({
         type: String,
         required: true,
     },
-    petId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Pets'
+    pet: {
+        type: {
+            type: String,
+            required: true,
+        },
+        name: {
+            type: String,
+        },
+        img:  {
+            type: String,
+            required: true,
+        },
+        lastSeen: {
+            type: String,
+            required: true,
+        },
+        species: {
+            type: String,
+            required: true,
+        },
       },
     replies: [{
         message: {

@@ -24,54 +24,41 @@ export const ADD_USER = gql`
   }
 `;
 
-// export const ADD_PET = gql`
-// mutation petData ($input: petData!) {
-//     petData(input: $petData) {
-//         _id
-//         type
-//         name
-//         img
-//         lastSeen
-//         species
-//     }
-//   }
-//   `;
 export const ADD_POST = gql`
-mutation addPost(message: String!, location: String!, petId: PetData)
-addPost(message: $message, location: $locaion, petId: $pedId) {
+mutation addPost(message: String!, location: String!, pet: PetData)
+addPost(message: $message, location: $locaion, pet: $pet) {
     _id
     message
     location
-    petId
+    pet
     {
       type
       name
       img
       lastSeen
-      Species
+      species
     }
 }
-
 `
 
 export const DEL_POST = gql`
-mutation delPost($PostId: ID!) {
-  delPost(PostId: $PostId) {
+mutation delPost($postId: ID!) {
+  delPost(postId: $postId) {
     _id
     message
     location
-    petId
+    pet
     {
       type
       name
       img
       lastSeen
-      Species
+      species
     }
   }
   }
 `
-
+//The reply mutation is suppose to return Post but I'm not sure if it is able to... Test this out later.
 export const ADD_REPLY = gql`
   mutation addReply( postId: ID!, message: String!, username: String!) {
   addReply( postId: $postId, message: $message, username: $username) {
