@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_USERS = gql`
 query getUsers {
@@ -6,11 +6,11 @@ query getUsers {
       _id
       username
       email
-      post: {
+      post {
         _id
         message
         location
-        petId: {
+        petId {
           _id
           type
           name
@@ -20,7 +20,7 @@ query getUsers {
         }
     }
 }
-`
+`;
 
 export const GET_USER = gql`
 query user($username: String!) {
@@ -28,11 +28,11 @@ query user($username: String!) {
       _id
       username
       email
-      post: {
+      post {
         _id
         message
         location
-        petId: {
+        petId {
             _id
             type
             name
@@ -51,18 +51,30 @@ export const GET_ME = gql`
       _id
       username
       email
-      thoughts {
+      post {
         _id
-        thoughtText
-        thoughtAuthor
-        createdAt
+        message
+        location
+        petId {
+          _id
+          type
+          name
+          img
+          lastSeen
+          species
+        }
+        replies {
+          postId
+          message
+          username
+        }
       }
     }
   }
 `;
 
 export const GET_PETS = gql`
-query getPets {
+  query getPets {
     pets {
       _id
       type
@@ -71,15 +83,15 @@ query getPets {
       lastSeen
       species
     }
-}
-`
+  }
+`;
 
 export const GET_POSTS = gql`
 query getPosts {
   post {
-    _id: ID!
-    message: String!
-    location: String!
+    _id
+    message
+    location
     petId {
       type
       name
@@ -87,17 +99,17 @@ query getPosts {
       lastSeen
       Species
     }
-    replies: {
+    replies {
       message
       username
     }
   }
 }
-`
+`;
 
 export const GET_PET = gql`
-query getPet {
-  pets() {
+query getPet($petId: ID!) {
+  pets(petId: $petId) {
     _id
     type
     name
@@ -106,14 +118,14 @@ query getPet {
     species
   }
 }
-`
+`;
 
 export const GET_POST = gql`
-query getPost {
-  post(postId: $ID) {
-    _id: ID!
-    message: String!
-    location: String!
+query getPost($postId: ID!) {
+  post(postId: $postId) {
+    _id
+    message
+    location
     petId {
       type
       name
@@ -121,10 +133,10 @@ query getPost {
       lastSeen
       Species
     }
-    replies: {
+    replies {
       message
       username
     }
   }
 }
-`
+`;

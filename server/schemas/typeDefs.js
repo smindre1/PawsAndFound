@@ -25,7 +25,7 @@ const typeDefs = `
     }
 
     type Replies {
-        _id: ID!
+        postId: ID!
         message: String!
         username: String!
     }
