@@ -24,18 +24,18 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_PET = gql`
-mutation petData ($input: petData!) {
-    petData(input: $petData) {
-        _id
-        type
-        name
-        img
-        lastSeen
-        species
-    }
-  }
-  `;
+// export const ADD_PET = gql`
+// mutation petData ($input: petData!) {
+//     petData(input: $petData) {
+//         _id
+//         type
+//         name
+//         img
+//         lastSeen
+//         species
+//     }
+//   }
+//   `;
 export const ADD_POST = gql`
 mutation addPost(message: String!, location: String!, petId: PetData)
 addPost(message: $message, location: $locaion, petId: $pedId) {
@@ -75,7 +75,6 @@ mutation delPost($PostId: ID!) {
 export const ADD_REPLY = gql`
   mutation addReply( postId: ID!, message: String!, username: String!) {
   addReply( postId: $postId, message: $message, username: $username) {
-    _id
     postId
     message
     username
