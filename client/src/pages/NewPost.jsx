@@ -1,59 +1,38 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import Auth from '../utils/auth';
 
 import { useMutation } from '@apollo/client';
 
 import { ADD_POST } from '../../utils/mutations';
-import { GET_POSTS, GET_ME } from '../../utils/queries';
 
 const NewPost = () => {
-  
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/me" />;
-  }
 
   const [message, setMessage] = useState('');
   const [location, setLocation] = useState('');
   const [petData, setPetData] = useState({
     type: '',
     name: '',
+    //sesarch how to img
     img: '',
     lastSeen: '',
     species: '',
   });
 
-  const [addPost, { error }] = useMutation(ADD_POST, {
-    refetchQueries: [
-      // GET_POSTS,
-      // 'getPosts',
-      GET_ME,
-      'me'
-    ]
-  });
+  const [addPost, { error }] = useMutation(ADD_POST);
 
-  const handleTypeChange = (e) => {
-    setPetData({ ...petData, type: e.target.value });
-  };
-
-  const handleNameChange = (e) => {
-    setPetData({ ...petData, name: e.target.value });
-  };
-
-  const handleImgChange = (e) => {
-    setPetData({ ...petData, img: e.target.value });
-  };
-
-  const handleLastSeenChange = (e) => {
-    setPetData({ ...petData, lastSeen: e.target.value });
-  };
-
-  const handleSpeciesChange = (e) => {
-    setPetData({ ...petData, species: e.target.value });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setPetData({ ...petData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
 
     try {
       await addPost({
@@ -77,10 +56,16 @@ const NewPost = () => {
     } catch (error) {
       console.error('Error adding post:', error);
     }
+
+    if (Auth.loggedIn()) {
+      return <Navigate to="/me" />;
+    }
+
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2>New Post</h2>
       <label>
         Message:
         <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
@@ -91,23 +76,23 @@ const NewPost = () => {
       </label>
       <label>
         Type (lost/found):
-        <input type="text" value={petData.type} onChange={handleTypeChange} />
+        <input type="text" value={petData.type} name="type" onChange={handleInputChange} />
       </label>
       <label>
-        Name (optional):
-        <input type="text" value={petData.name} onChange={handleNameChange} />
+        Pet's Name (optional):
+        <input type="text" value={petData.name} name="name" onChange={handleInputChange} />
       </label>
       <label>
         Image (optional):
-        <input type="text" value={petData.img} onChange={handleImgChange} />
+        <input type="text" value={petData.img} name="image" onChange={handleInputChange} />
       </label>
       <label>
         Last Seen Location:
-        <input type="text" value={petData.lastSeen} onChange={handleLastSeenChange} />
+        <input type="text" value={petData.lastSeen} name="lastseen" onChange={handleInputChange} />
       </label>
       <label>
         Species:
-        <input type="text" value={petData.species} onChange={handleSpeciesChange} />
+        <input type="text" value={petData.species} name="species" onChange={handleInputChange} />
       </label>
       <button type="submit">Create Post</button>
     </form>
