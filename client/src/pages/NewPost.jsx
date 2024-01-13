@@ -1,11 +1,10 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import Auth from '../utils/auth';
-
 import { useMutation } from '@apollo/client';
 
 import { ADD_POST } from '../../utils/mutations';
-import { GET_POSTS, GET_ME } from '../../utils/queries';
+import { GET_POSTS, GET_ME } from '../../utils/queries'; //This can be deleted
 
 const NewPost = () => {
   
@@ -24,12 +23,12 @@ const NewPost = () => {
   });
 
   const [addPost, { error }] = useMutation(ADD_POST, {
-    refetchQueries: [
+    // refetchQueries: [
       // GET_POSTS,
       // 'getPosts',
-      GET_ME,
-      'me'
-    ]
+    //   GET_ME,
+    //   'me'
+    // ]
   });
 
   const handleTypeChange = (e) => {
