@@ -2,7 +2,6 @@ import React from 'react';
 
 const AboutUs = () => {
   // Company information
-  const companyName = 'Paws and Found';
   const yearFounded = 2024;
   const aboutText = 
   ` We aim to create a widespread communication in order to locate any lost pets in the area, and get them home.
@@ -19,7 +18,7 @@ const AboutUs = () => {
 
   return (
     <div className="about-us">
-      <h1>About Us - {companyName}</h1>
+      <h1>About Paws and Found</h1>
       <h2>Our Story</h2>
       <p>{aboutText}</p>
 
@@ -27,14 +26,14 @@ const AboutUs = () => {
       <ul>
         {teamMembers.map((member) => (
           <li key={member.id}>
-            <strong>{member.name}</strong> - {member.position}
+            {member.name}
           </li>
         ))}
       </ul>
 
       <h2>Our Values</h2>
       <p>
-        Here at {companyName}, our goal is to provide top insight as to where your pet might be located.
+        Here at Paws and Found, our goal is to provide top insight as to where your pet might be located.
         We believe nothing is truly lost, just waiting to be found.
       </p>
 
