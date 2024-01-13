@@ -10,8 +10,7 @@ query getUsers {
         _id
         message
         location
-        petId {
-          _id
+        pet {
           type
           name
           img
@@ -32,8 +31,7 @@ query user($username: String!) {
         _id
         message
         location
-        petId {
-            _id
+        pet {
             type
             name
             img
@@ -55,33 +53,14 @@ export const GET_ME = gql`
         _id
         message
         location
-        petId {
-          _id
+        pet {
           type
           name
           img
           lastSeen
           species
         }
-        replies {
-          postId
-          message
-          username
-        }
       }
-    }
-  }
-`;
-
-export const GET_PETS = gql`
-  query getPets {
-    pets {
-      _id
-      type
-      name
-      img
-      lastSeen
-      species
     }
   }
 `;
@@ -92,30 +71,13 @@ query getPosts {
     _id
     message
     location
-    petId {
+    pet {
       type
       name
       img
       lastSeen
-      Species
+      species
     }
-    replies {
-      message
-      username
-    }
-  }
-}
-`;
-
-export const GET_PET = gql`
-query getPet($petId: ID!) {
-  pets(petId: $petId) {
-    _id
-    type
-    name
-    img
-    lastSeen
-    species
   }
 }
 `;
@@ -126,12 +88,12 @@ query getPost($postId: ID!) {
     _id
     message
     location
-    petId {
+    pet {
       type
       name
       img
       lastSeen
-      Species
+      species
     }
     replies {
       message

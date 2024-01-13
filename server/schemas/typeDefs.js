@@ -11,12 +11,11 @@ const typeDefs = `
         _id: ID!
         message: String!
         location: String!
-        petId: [Pets]
+        pet: Pets
         replies: [Replies]
     }
 
     type Pets {
-        _id: ID!
         type: String!
         name: String
         img: String!
@@ -36,7 +35,6 @@ const typeDefs = `
     }
 
     input PetData {
-        _id: ID!
         type: String!
         name: String
         img: String!
@@ -58,12 +56,11 @@ const typeDefs = `
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-        addPost(message: String!, location: String!, petId: PetData): Post
+        addPost(message: String!, location: String!, pet: PetData): Post
         delPost(postId: ID!): Auth
                
         addReply( postId: ID!, message: String!, username: String!): Post
     }
-
 `;
 
 module.exports = typeDefs;

@@ -15,15 +15,32 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    pets: async () => {
-      return Pets.find();
-    },
     posts: async () => {
       return Post.find();
     },
-    pet: async (parent, { petId }) => {
-      return Pets.findOne({ petId });
+    foundPets: async () => {
+      const posts = await Post.find({pet: {type: "found"}});
+      return posts;
     },
+    lostPets: async () => {
+      const posts = await Post.find({pet: {type: "lost"}});
+      return posts;
+    },
+    // lostPets: async () => {
+    //   const posts = await Post.find().populate("pets");
+    //   const array = posts.map((post) => {
+    //     post.pets = post.pets.filter((pet) => {
+    //       pet.type == "lost";
+    //     })
+    //   });
+    //   const array2 = array.filter((post) => {
+    //     return post.pets.length > 0;
+    //   });
+    //   return array2;
+    // },
+    // pet: async (parent, { petId }) => {
+    //   return Pets.findOne({ petId });
+    // },
     post: async (parent, { postId }) => {
       return Post.findOne({ postId });
     },
@@ -52,18 +69,17 @@ const resolvers = {
 
       return { token, user };
     },
-    addPost: async (parent, { location, type, name, img, lastseen }, context) => {
+    addPost: async (parent, { message, location, type, name, img, lastseen, species }, context) => {
       if (context.user) {
-        const pet = await Pets.create({
+        const post = await Post.create({
+          username: context.user.username,
+          message,
+          pet: {location,
           type,
           name,
           img,
           lastseen,
-        });
-        const post = await Post.create({
-          username: context.user.username,
-          location,
-          pet,
+          species}
         });
 
         await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { post: post._id } });
@@ -79,7 +95,7 @@ const resolvers = {
           username: context.user.username,
         });
 
-        await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { posts: post._id } });
+        await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { posts: post._id } }); //If this doesn't work you can use the arg
 
         return post;
       }
@@ -96,7 +112,6 @@ const resolvers = {
           },
           {
             new: true,
-            runValidators: true,
           }
         );
       }
