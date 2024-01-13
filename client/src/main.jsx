@@ -5,8 +5,6 @@ import './index.css';
 import App from './App.jsx';
 import About from './pages/AboutUs';
 import Home from './pages/Home';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
 import NewPost from './pages/NewPost';
 import Post from './pages/SpecificPost';
 import Profile from './pages/Profile';
@@ -20,16 +18,10 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <About />
-      }, {
-        path: '/home',
         element: <Home />
       }, {
-        path: '/login',
-        element: <Login />
-      }, {
-        path: '/signup',
-        element: <Signup />
+        path: '/aboutus',
+        element: <About />
       }, {
         path: '/me',
         element: <Profile />

@@ -1,34 +1,82 @@
-import { Link } from "react-router-dom";
-
-import Auth from "../../utils/auth"; //Make later...
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import SignUpForm from '../Signup';
+import LoginForm from '../Login';
+import Auth from "../../../utils/auth";
 
 const Header = () => {
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-  };
-  return (
-    <header>
-      <Link to="/">About Us</Link>
-      <Link to="/home">Home</Link>
-      <Link to="/newpost">Create Post</Link>
+  // set modal display state
+  const [showModal, setShowModal] = useState(false);
 
-      <div>
-        {Auth.loggedIn() ? (
-          <>
-            <Link to="/me">{Auth.getProfile().data.username}'s profile</Link>
-            <button className="btn btn-lg btn-light m-2" onClick={logout}>
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Signup</Link>
-          </>
-        )}
-      </div>
-    </header>
+  return (
+    <>
+      <Navbar bg='dark' variant='dark' expand='lg'>
+        <Container fluid>
+          <Navbar.Brand as={Link} to='/'>
+            Paws And Found
+          </Navbar.Brand>
+          <Navbar.Link as={Link} to='/aboutus'>
+            About Us
+          </Navbar.Link>
+          <Navbar.Toggle aria-controls='navbar' />
+          <Navbar.Collapse id='navbar' className='d-flex flex-row-reverse'>
+            <Nav className='ml-auto d-flex'>
+              <Nav.Link as={Link} to='/'>
+                Search For Pets
+              </Nav.Link>
+              {/* if user is logged in show profile and logout buttons */}
+              {Auth.loggedIn() ? (
+                <>
+                  <Nav.Link as={Link} to='/me'>
+                    Profile
+                  </Nav.Link>
+                  <Nav.Link as={Link} to='/newpost'>
+                    Create Post
+                  </Nav.Link>
+                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                </>
+              ) : (
+                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      {/* Modal data setup */}
+      <Modal
+        size='lg'
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby='signup-modal'>
+        {/* tab container to do either signup or login component */}
+        <Tab.Container defaultActiveKey='login'>
+          <Modal.Header closeButton>
+            <Modal.Title id='signup-modal'>
+              <Nav variant='pills'>
+                <Nav.Item>
+                  <Nav.Link eventKey='login'>Login</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Modal.Title>
+          </Modal.Header>
+          {/* Login and Signup Forms */}
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey='login'>
+                <LoginForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+              <Tab.Pane eventKey='signup'>
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal>
+    </>
   );
 };
 

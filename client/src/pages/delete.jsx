@@ -1,9 +1,14 @@
-//double check that all the necessary packages are in the package.json
+//This file is just another version of the Signup.
+//This file is formated as it's own page compared to the other which is simply a pop up form.
+//This one also does not use bootstrap components.
+
+
+
+//Double check that all the necessary packages are in the package.json
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
-//Check mutations for this...
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
@@ -13,7 +18,6 @@ const Signup = () => {
     email: '',
     password: '',
   });
-  //Check that addUser is what the muttion is called
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
