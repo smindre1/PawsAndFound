@@ -33,13 +33,13 @@ const Home = () => {
     const divFunction = (post) => {
         return (
         <Link to={`/post/${post._id}`}>
-        <div>
-        <h1> {post.pet?.name || "none"}</h1>
-        <h2> {post?.location || "none"}</h2>
-        <p> {post?.message || "none"}</p>
-        <p> {post?.pet.species || "none"}, {post.pet?.lastseen || "none"}, {post.pet?.type || "none"}</p>
-        <img>{post.pet?.img || "none"}</img>
-        </div>
+            <div>
+                <h1> {post.pet?.name || ""}</h1>
+                <h2> {post?.location || "none"}</h2>
+                <p> {post?.message || "none"}</p>
+                <p> {post?.pet.species || "none"}, {post.pet?.lastseen || "none"}, {post.pet?.type || "none"}</p>
+                <img>{post.pet?.img || "none"}</img>
+            </div>
         </Link>)}
 
     return(

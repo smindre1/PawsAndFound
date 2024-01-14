@@ -38,3 +38,9 @@ A lost and found pet blog.
     shelters{
     petsList{petId}}
 
+
+
+## Things to Check:
+//Check the frontend queries
+//delete resolvers. etc.. for individual and multiple user searches
+//Add dates to posts
