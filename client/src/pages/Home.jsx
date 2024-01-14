@@ -4,33 +4,29 @@ import { GET_LOST, GET_FOUND } from '../../utils/queries';
 import { useState } from 'react';
 
 const Home = () => {
-    const [state, setState] = useState('Lost');
     const [loadPosts, setPosts] = useState([]);
+    const { loading: wait1, data: lostPosts} = useQuery(GET_LOST);
+    const { loading: wait2, data: foundPosts} = useQuery(GET_FOUND);
 
-
-    const lostPets = () => {
-        const { loading , data} = useQuery(GET_LOST);
-        const posts = data?.lostPets || [];
-        
-        console.log("lost pets post running");
+    const lostPets = () => {   
+        const posts = lostPosts?.lostPets || [];
+        // console.log("lost pets post running");
         setPosts(posts);
     };
 
-
     const foundPets = () => {
-        const { loading , data} = useQuery(GET_FOUND);
-        const posts = data?.foundPets || [];
-  
-        console.log("found pets post running");
+        const posts = foundPosts?.foundPets || [];
+        // console.log("found pets post running");
         setPosts(posts);
     };
 
     return(
         <div>
             <div>
-                <button onClick={() => lostPets}>Lost</button>
-                <button onClick={() => foundPets}>Found</button>
+                <button onClick={() => lostPets()}>Lost</button>
+                <button onClick={() => foundPets()}>Found</button>
             </div>
+            {wait1 || wait2 ? <h2>Loading...</h2> : null}
             {loadPosts.length
             ? `Viewing ${loadPosts.length} pet ${loadPosts.length === 1 ? 'post' : 'posts'}:`
             : 'There are no pet posts available!'}
