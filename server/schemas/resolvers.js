@@ -1,4 +1,4 @@
-const { User, Pets, Post } = require("../models");
+const { User, Post } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -48,7 +48,6 @@ const resolvers = {
       }
 
       const token = signToken(user);
-
       return { token, user };
     },
     addPost: async (parent, { message, location, type, name, img, lastseen, species }, context) => {
