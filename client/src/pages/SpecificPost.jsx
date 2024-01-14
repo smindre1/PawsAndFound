@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 
-import { ADD_REPLY } from "../utils/mutations";
+import { ADD_REPLY } from "../../utils/mutations";
 import { GET_POST } from "../../utils/queries";
 
 const SpecificPost = () => {

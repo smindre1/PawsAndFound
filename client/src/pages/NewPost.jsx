@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_POST } from "../../utils/mutations";
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 
 const NewPost = () => {
   const [message, setMessage] = useState("");

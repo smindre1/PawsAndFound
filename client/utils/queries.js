@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
-
+//For admin use in the database to aquire user list
 export const GET_USERS = gql`
-query getUsers {
+  query getUsers {
     users {
       _id
       username
@@ -17,8 +17,9 @@ query getUsers {
           lastSeen
           species
         }
+      }
     }
-}
+  }
 `;
 
 export const GET_ME = gql`
@@ -44,73 +45,73 @@ export const GET_ME = gql`
 `;
 
 export const GET_POSTS = gql`
-query getPosts {
-  posts {
-    _id
-    message
-    location
-    pet {
-      type
-      name
-      img
-      lastSeen
-      species
+  query getPosts {
+    posts {
+      _id
+      message
+      location
+      pet {
+        type
+        name
+        img
+        lastSeen
+        species
+      }
     }
   }
-}
 `;
 
 export const GET_POST = gql`
-query getPost($postId: ID!) {
-  post (postId: $postId) {
-    _id
-    message
-    location
-    pet {
-      type
-      name
-      img
-      lastSeen
-      species
-    }
-    replies {
+  query getPost($postId: ID!) {
+    post(postId: $postId) {
+      _id
       message
-      username
+      location
+      pet {
+        type
+        name
+        img
+        lastSeen
+        species
+      }
+      replies {
+        message
+        username
+      }
     }
   }
-}
 `;
 
 export const GET_LOST = gql`
-query lostPets {
-  lostPets {
-    _id
-    message
-    location
-    pet {
-      type
-      name
-      img
-      lastSeen
-      species
+  query lostPets {
+    lostPets {
+      _id
+      message
+      location
+      pet {
+        type
+        name
+        img
+        lastSeen
+        species
+      }
     }
   }
-}
 `;
 
 export const GET_FOUND = gql`
-query foundPets {
-  foundPets {
-    _id
-    message
-    location
-    pet {
-      type
-      name
-      img
-      lastSeen
-      species
+  query foundPets {
+    foundPets {
+      _id
+      message
+      location
+      pet {
+        type
+        name
+        img
+        lastSeen
+        species
+      }
     }
   }
-}
 `;
