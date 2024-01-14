@@ -46,10 +46,10 @@ const typeDefs = `
         users: [User]
         user(username: String!): User
         me: User
-        pets: [Pets]
         posts: [Post]
-        pet(petId: ID!): Pets
         post(postId: ID!): Post
+        lostPets: [Post]
+        foundPets: [Post]
     }
 
     type Mutation {
