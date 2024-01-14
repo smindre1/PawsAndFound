@@ -6,9 +6,6 @@ const resolvers = {
     users: async () => {
       return User.find().populate("posts");
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("posts");
-    },
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }).populate("posts");
@@ -26,21 +23,6 @@ const resolvers = {
       const posts = await Post.find({pet: {type: "lost"}});
       return posts;
     },
-    // lostPets: async () => {
-    //   const posts = await Post.find().populate("pets");
-    //   const array = posts.map((post) => {
-    //     post.pets = post.pets.filter((pet) => {
-    //       pet.type == "lost";
-    //     })
-    //   });
-    //   const array2 = array.filter((post) => {
-    //     return post.pets.length > 0;
-    //   });
-    //   return array2;
-    // },
-    // pet: async (parent, { petId }) => {
-    //   return Pets.findOne({ petId });
-    // },
     post: async (parent, { postId }) => {
       return Post.findOne({ postId });
     },
