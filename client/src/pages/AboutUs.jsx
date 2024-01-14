@@ -23,13 +23,13 @@ const AboutUs = () => {
       <p>{aboutText}</p>
 
       <h2>Our Team</h2>
-      <ul>
+      <p>
         {teamMembers.map((member) => (
           <li key={member.id}>
             {member.name}
           </li>
         ))}
-      </ul>
+      </p>
 
       <h2>Our Values</h2>
       <p>
@@ -38,7 +38,7 @@ const AboutUs = () => {
       </p>
 
       <h2>Founded In</h2>
-      <p>{companyName} was founded in {yearFounded}.</p>
+      <p>Paws and Found was founded in {yearFounded}.</p>
     </div>
   );
 };
