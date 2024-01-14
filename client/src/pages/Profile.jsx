@@ -1,56 +1,59 @@
-//Do we use user Params?????????
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
-import { GET_USER, GET_ME } from '../utils/queries';
-
-import Auth from '../utils/auth';
+import { GET_ME } from '../../utils/queries';
+import { useMutation } from "@apollo/client";
+import { DEL_POST } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 const Profile = () => {
-  const { username: userParam } = useParams();
+  const { loading, data } = useQuery(GET_ME);
+  const user = data?.me || {};
 
-  const { loading, data } = useQuery(userParam ? GET_USER : GET_ME, {
-    variables: { username: userParam },
-  });
-
-  const user = data?.me || data?.user || {};
-  // navigate to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/me" />;
-  }
+  // If not logged in redirects to homepage
+  !Auth.loggedIn() ? <Redirect to="/" /> : alert("Please login");
 
   if (loading) {
     return <div>Loading...</div>;
   }
+  const [delPost, { error }] = useMutation(DEL_POST);
 
-  // if (!user?.username) {
-  //   return (
-  //     <h4>
-  //       Sorry! You must be logged in to access. Use the navigation to sign up or log in!
-  //     </h4>
-  //   );
-  // }
+
+  const deletePost = async (postId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return <Redirect to="/" />;
+    }
+    
+    try {
+      const { data } = await delPost({
+        variables: { postId },
+      });
+      } catch (err) {
+        console.error(err);
+      }
+  }
 
   return (
     <div>
       <div>
         <h2>
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+          Viewing {user.username ? `${user.username}'s` : 'your'} profile.
         </h2>
 
         <div>
-          <PostList
-            posts={user.posts}
-            title={`${user.username}'s posts...`}
-            showTitle={false}
-            showUsername={false}
-          />
+          {user.post.map((post) => {
+            return (
+              <div postId={post._id}>
+                <h2> {post.pet?.name || "No Pet Name Available"}</h2>
+                <p> {post?.message || "none"}</p>
+                <ul>{post.location || "unknown"}</ul>
+                <p> {post?.pet.species || "unknown"}, {post.pet?.lastseen || "unknown"}, {post.pet?.type || "unknown"}</p>
+                <img>{post.pet?.img || "no image"}</img>
+                <button onClick={() => deletePost(post._id)}>Delete This Post</button>
+              </div>
+            )
+          })}
         </div>
-        {!userParam && (
-          <div>
-            <PostForm />
-          </div>
-        )}
       </div>
     </div>
   );

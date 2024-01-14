@@ -1,21 +1,19 @@
-import { Navigate } from 'react-router-dom';
-import { useState } from 'react';
-import Auth from '../utils/auth';
-import { useMutation } from '@apollo/client';
-
-import { ADD_POST } from '../../utils/mutations';
+import { Navigate } from "react-router-dom";
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_POST } from "../../utils/mutations";
+import Auth from "../utils/auth";
 
 const NewPost = () => {
-
-  const [message, setMessage] = useState('');
-  const [location, setLocation] = useState('');
+  const [message, setMessage] = useState("");
+  const [location, setLocation] = useState("");
   const [petData, setPetData] = useState({
-    type: '',
-    name: '',
+    type: "",
+    name: "",
     //sesarch how to img
-    img: '',
-    lastSeen: '',
-    species: '',
+    img: "",
+    lastSeen: "",
+    species: "",
   });
 
   const [addPost, { error }] = useMutation(ADD_POST);
@@ -43,23 +41,22 @@ const NewPost = () => {
       });
 
       // Reset form after successful submission
-      setMessage('');
-      setLocation('');
+      setMessage("");
+      setLocation("");
       setPetData({
-        type: '',
-        name: '',
-        img: '',
-        lastSeen: '',
-        species: '',
+        type: "",
+        name: "",
+        img: "",
+        lastSeen: "",
+        species: "",
       });
     } catch (error) {
-      console.error('Error adding post:', error);
+      console.error("Error adding post:", error);
     }
 
     if (Auth.loggedIn()) {
       return <Navigate to="/me" />;
     }
-
   };
 
   return (
@@ -99,5 +96,3 @@ const NewPost = () => {
 };
 
 export default NewPost;
-
-
