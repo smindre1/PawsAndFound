@@ -46,6 +46,11 @@ A lost and found pet blog.
 
 //specific post page
 //Add replies
+ (replylist & replyForm component)
+
+//Include username on the post model
+//Seed file
+/Adding images
 //Add dates to posts
 
 ## Issues

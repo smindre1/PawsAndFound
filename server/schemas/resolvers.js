@@ -22,7 +22,7 @@ const resolvers = {
       return Post.find({"pet.type": "lost"});
     },
     post: async (parent, { postId }) => {
-      return Post.findOne({ postId });
+      return Post.findById( postId );
     },
   },
 
