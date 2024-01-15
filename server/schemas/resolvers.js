@@ -16,12 +16,10 @@ const resolvers = {
       return Post.find();
     },
     foundPets: async () => {
-      const posts = await Post.find({pet: {type: "found"}});
-      return posts;
+      return Post.find({"pet.type": "found"});
     },
     lostPets: async () => {
-      const posts = await Post.find({pet: {type: "lost"}});
-      return posts;
+      return Post.find({"pet.type": "lost"});
     },
     post: async (parent, { postId }) => {
       return Post.findOne({ postId });
