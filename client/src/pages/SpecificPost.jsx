@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { useQuery } from "@apollo/client";
@@ -13,7 +13,12 @@ const SpecificPost = () => {
     variables: { postId: postId },
   });
 
+  // console.log("Hello");
+  // console.log("postId: ", postId);
+  console.log("data: ", data);
   useEffect(() => {
+    
+
     if (!loading && data) {
       setPost(data?.post || {});
     }
@@ -43,12 +48,12 @@ const SpecificPost = () => {
         </blockquote>
       </div>
 
-      <div className="my-5">
+      {/* <div className="my-5">
         <ReplyList reply={post.reply} />
       </div>
       <div className="m-3 p-4" style={{ border: "1px dotted #1a1a1a" }}>
         <ReplyForm postId={post._id} />
-      </div>
+      </div> */}
     </div>
   );
 };

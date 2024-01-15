@@ -7,10 +7,11 @@ import Auth from "../../utils/auth";
 const NewPost = () => {
   const [message, setMessage] = useState("");
   const [location, setLocation] = useState("");
+  const [status, setStatus] = useState("");
   const [petData, setPetData] = useState({
     type: "",
     name: "",
-    //sesarch how to img
+    //search how to img
     img: "",
     lastSeen: "",
     species: "",
@@ -25,18 +26,31 @@ const NewPost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //This assigns what the user chose in the select tag to petData
+    petData.type = status;
+    setPetData({...petData});
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
+      alert("Please login.");
       return false;
     }
 
     try {
+      // console.log(petData);
+      const { type, name, img, lastSeen, species } = petData;
+      // console.log("type: ", type, "name: ", name, "img: ", img, "lastSeen: ", lastSeen, "species: ", species);
       await addPost({
         variables: {
           message,
           location,
-          pet: petData,
+          pet: {
+            type,
+            name,
+            img,
+            lastSeen,
+            species,
+          },
         },
       });
 
@@ -50,13 +64,16 @@ const NewPost = () => {
         lastSeen: "",
         species: "",
       });
+      console.log("failed");
+      if (Auth.loggedIn()) {
+        window.location.replace('/');
+      };
+
     } catch (error) {
       console.error("Error adding post:", error);
     }
 
-    if (Auth.loggedIn()) {
-      return <Navigate to="/me" />;
-    }
+    
   };
 
   return (
@@ -71,8 +88,12 @@ const NewPost = () => {
         <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
       </label>
       <label>
-        Type (lost/found):
-        <input type="text" value={petData.type} name="type" onChange={handleInputChange} />
+        Have you lost or found this pet:
+        <select name="type" value={status} onChange={(e) => setStatus(e.target.value)}>
+          <option value="" disabled>-Select-</option>
+          <option value="lost">Lost a Pet</option>
+          <option value="found">Found a Pet</option>
+        </select>
       </label>
       <label>
         Pet's Name (optional):
@@ -80,11 +101,11 @@ const NewPost = () => {
       </label>
       <label>
         Image (optional):
-        <input type="text" value={petData.img} name="image" onChange={handleInputChange} />
+        <input type="text" value={petData.img} name="img" onChange={handleInputChange} />
       </label>
       <label>
         Last Seen Location:
-        <input type="text" value={petData.lastSeen} name="lastseen" onChange={handleInputChange} />
+        <input type="text" value={petData.lastSeen} name="lastSeen" onChange={handleInputChange} />
       </label>
       <label>
         Species:

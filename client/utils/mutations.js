@@ -26,7 +26,7 @@ export const ADD_USER = gql`
 
 export const ADD_POST = gql`
   mutation addPost($message: String!, $location: String!, $pet: PetData) {
-    addPost(message: $message, location: $locaion, pet: $pet) {
+    addPost(message: $message, location: $location, pet: $pet) {
       _id
       message
       location
