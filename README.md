@@ -41,6 +41,12 @@ A lost and found pet blog.
 
 
 ## Things to Check:
-//Check the frontend queries
-//delete resolvers. etc.. for individual and multiple user searches
+//Users Profile page
+//Deleting posts
+
+//specific post page
+//Add replies
 //Add dates to posts
+
+## Issues
+//If a user is in the middle of making a post and they are logged out it will reload the page/redirect page and erase progress on that user's post.
