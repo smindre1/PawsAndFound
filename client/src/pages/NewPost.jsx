@@ -10,7 +10,7 @@ const NewPost = () => {
   const [petData, setPetData] = useState({
     type: "",
     name: "",
-    //sesarch how to img
+    //search how to img
     img: "",
     lastSeen: "",
     species: "",
@@ -32,11 +32,20 @@ const NewPost = () => {
     }
 
     try {
+      // console.log(petData);
+      const {type, name, img, lastSeen, species} = petData;
+      // console.log("type: ", type, "name: ", name, "img: ", img, "lastSeen: ", lastSeen, "species: ", species);
       await addPost({
         variables: {
           message,
           location,
-          pet: petData,
+          pet: {
+            type,
+            name,
+            img,
+            lastSeen,
+            species
+        }
         },
       });
 
@@ -80,11 +89,11 @@ const NewPost = () => {
       </label>
       <label>
         Image (optional):
-        <input type="text" value={petData.img} name="image" onChange={handleInputChange} />
+        <input type="text" value={petData.img} name="img" onChange={handleInputChange} />
       </label>
       <label>
         Last Seen Location:
-        <input type="text" value={petData.lastSeen} name="lastseen" onChange={handleInputChange} />
+        <input type="text" value={petData.lastSeen} name="lastSeen" onChange={handleInputChange} />
       </label>
       <label>
         Species:

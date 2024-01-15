@@ -50,18 +50,21 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addPost: async (parent, { message, location, type, name, img, lastseen, species }, context) => {
+    addPost: async (parent, { message, location, pet }, context) => {
       if (context.user) {
+        // console.log("the message: ", message);
+        // console.log("Resolvers", "type: ", pet.type, "name: ", pet.name, "img: ", pet.img, "lastSeen: ", pet.lastSeen, "species: ", pet.species);
+
         const post = await Post.create({
           username: context.user.username,
           message,
-          pet: {location,
-          type,
-          name,
-          img,
-          lastseen,
-          species}
-        });
+          location,
+          pet: {type: pet.type,
+          name: pet.name,
+          img: pet.img,
+          lastSeen: pet.lastSeen,
+          species: pet.species}}
+        );
 
         await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { post: post._id } });
 
