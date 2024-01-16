@@ -6,9 +6,10 @@ import { DEL_POST } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const Profile = () => {
-  const [delPost] = useMutation(DEL_POST);
+  const [deletePost, { error}] = useMutation(DEL_POST);
   const { loading, data } = useQuery(GET_ME);
   const user = data?.me || {};
+  const username = user.username;
 
 
   // If not logged in redirects to homepage
@@ -19,17 +20,18 @@ const Profile = () => {
   }
 
 
-  const deletePost = async (postId) => {
+  const handledeletePost = async (postId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-    console.log(postId)
     try {
-      const { data } = await delPost({
-        variables: { postId },
+      await deletePost({
+        variables: {postId : postId}
       });
-      } catch (err) {
-        console.error(err);
-      }
+    } catch (err) {
+      console.error(err);
+    }
+    window.location.replace(`/me`);
   }
+  
 
   return (
     <div>
@@ -49,7 +51,7 @@ const Profile = () => {
                   <p> {post?.pet.species || "unknown"}, {post.pet?.lastseen || "unknown"}, {post.pet?.type || "unknown"}</p>
                   <img src={post?.pet.img || "no image"} alt="Description of animal" width="300" height="200"></img>
                   </Link>
-                  <button onClick={() => deletePost(post._id)}>Delete This Post</button>
+                  <button onClick={() => handledeletePost(post._id)}>Delete This Post</button>
                 </div>
                 
             )

@@ -57,7 +57,7 @@ const typeDefs = `
         login(email: String!, password: String!): Auth
 
         addPost(username: String!, message: String!, location: String!, pet: PetData): Post
-        delPost(postId: ID!): Auth
+        delPost(postId: ID!): Post
                
         addReply( postId: ID!, message: String!, username: String!): Post
     }
