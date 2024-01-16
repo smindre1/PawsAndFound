@@ -25,9 +25,10 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_POST = gql`
-  mutation addPost($message: String!, $location: String!, $pet: PetData) {
-    addPost(message: $message, location: $location, pet: $pet) {
+  mutation addPost($username: String!, $message: String!, $location: String!, $pet: PetData) {
+    addPost(username: $username,message: $message, location: $location, pet: $pet) {
       _id
+      username
       message
       location
       pet {
@@ -54,6 +55,11 @@ export const DEL_POST = gql`
         lastSeen
         species
       }
+      replies {
+        postId
+        message
+        username
+      }
     }
   }
 `;
@@ -61,9 +67,12 @@ export const DEL_POST = gql`
 export const ADD_REPLY = gql`
   mutation addReply($postId: ID!, $message: String!, $username: String!) {
   addReply( postId: $postId, message: $message, username: $username) {
-    postId
-    message
-    username
+    replies {
+      postId
+      message
+      username
+    }
+    
   }
 }
 `;

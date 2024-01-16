@@ -9,6 +9,7 @@ const typeDefs = `
 
     type Post {
         _id: ID!
+        username: String!
         message: String!
         location: String!
         pet: Pets
@@ -55,8 +56,8 @@ const typeDefs = `
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-        addPost(message: String!, location: String!, pet: PetData): Post
-        delPost(postId: ID!): Auth
+        addPost(username: String!, message: String!, location: String!, pet: PetData): Post
+        delPost(postId: ID!): Post
                
         addReply( postId: ID!, message: String!, username: String!): Post
     }

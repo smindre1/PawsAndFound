@@ -64,7 +64,6 @@ export const GET_POSTS = gql`
 export const GET_POST = gql`
   query getPost($postId: ID!) {
     post(postId: $postId) {
-      _id
       message
       location
       pet {

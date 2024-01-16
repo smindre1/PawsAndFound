@@ -35,6 +35,7 @@ const NewPost = () => {
       alert("Please login.");
       return false;
     }
+    const user = Auth.getProfile()
 
     try {
       // console.log(petData);
@@ -42,6 +43,7 @@ const NewPost = () => {
       // console.log("type: ", type, "name: ", name, "img: ", img, "lastSeen: ", lastSeen, "species: ", species);
       await addPost({
         variables: {
+          username: user.data.username,
           message,
           location,
           pet: {

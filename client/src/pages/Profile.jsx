@@ -1,17 +1,16 @@
 // import { Redirect, Link } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../../utils/queries';
-import { useMutation } from "@apollo/client";
 import { DEL_POST } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const Profile = () => {
+  const [deletePost, { error}] = useMutation(DEL_POST);
   const { loading, data } = useQuery(GET_ME);
   const user = data?.me || {};
-  if(!loading) {
-    console.log(user)
-  }
+  const username = user.username;
+
 
   // If not logged in redirects to homepage
   // !Auth.loggedIn() ? <Redirect to="/" /> : alert("Please login");
@@ -19,23 +18,20 @@ const Profile = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  // const [delPost, { error }] = useMutation(DEL_POST);
 
 
-  // const deletePost = async (postId) => {
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
-  //   // if (!token) {
-  //   //   return <Redirect to="/" />;
-  //   // }
-    
-  //   try {
-  //     const { data } = await delPost({
-  //       variables: { postId },
-  //     });
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  // }
+  const handledeletePost = async (postId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    try {
+      await deletePost({
+        variables: {postId : postId}
+      });
+    } catch (err) {
+      console.error(err);
+    }
+    window.location.replace(`/me`);
+  }
+  
 
   return (
     <div>
@@ -47,16 +43,17 @@ const Profile = () => {
         <div>
           {user.post?.map((post) => {
             return (
-              <Link key={post._id} to={`/post/${post._id}`}>
-                <div>
+                <div key={post._id}>
+                <Link to={`/post/${post._id}`}>
                   <h2> {post.pet?.name || "No Pet Name Available"}</h2>
                   <p> {post?.message || "none"}</p>
                   <ul>{post.location || "unknown"}</ul>
                   <p> {post?.pet.species || "unknown"}, {post.pet?.lastseen || "unknown"}, {post.pet?.type || "unknown"}</p>
-                  {/* <img>{post.pet?.img || "no image"}</img> */}
-                  <button onClick={() => deletePost(post._id)}>Delete This Post</button>
+                  <img src={post?.pet.img || "no image"} alt="Description of animal" width="300" height="200"></img>
+                  </Link>
+                  <button onClick={() => handledeletePost(post._id)}>Delete This Post</button>
                 </div>
-              </Link>
+                
             )
           })}
         </div>

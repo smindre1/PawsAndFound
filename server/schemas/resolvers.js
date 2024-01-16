@@ -4,7 +4,7 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate("posts");
+      return User.find().populate("post");
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -74,11 +74,11 @@ const resolvers = {
       if (context.user) {
         const post = await Post.findOneAndDelete({
           _id: postId,
-          username: context.user.username,
         });
 
-        await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { post: post._id } }); //If this doesn't work you can use the arg
-
+        await User.findOneAndUpdate({ _id: context.user._id },
+           { $pull: { post: post._id } },
+           {new:true});
         return post;
       }
       throw AuthenticationError;
