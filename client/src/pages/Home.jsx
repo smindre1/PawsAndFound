@@ -38,10 +38,10 @@ const Home = () => {
             {loadPosts.map((post) => {
                 return (
                 <div key={post._id} postid={post._id} onClick={goToPost}>
-                    <h1> {post.pet?.name || ""}</h1>
-                    <h2> {post?.location || "none"}</h2>
-                    <p> {post?.message || "none"}</p>
-                    <p> {post?.pet.species || "none"}, {post.pet?.lastseen || "none"}, {post.pet?.type || "none"}</p>
+                    <h1>Pet's Name: {post.pet?.name || "No name"}</h1>
+                    <h2>Location: {post?.location || "none"}</h2>
+                    <p>Message: {post?.message || "none"}</p>
+                    <p>Species/LastSeen/Status: {post?.pet.species || "none"}, {post.pet?.lastseen || "none"}, {post.pet?.type || "none"}</p>
                     {/* <img>{post.pet?.img || "none"}</img> */}
                 </div>
                 );
