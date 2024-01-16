@@ -80,16 +80,18 @@ const NewPost = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>New Post</h2>
-      <label>
+      <h2 className='alignText'>New Post</h2>
+      <label className='alignText'>
         Message:
         <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
       </label>
-      <label>
+      <br></br>
+      <label className='alignText'>
         Location:
         <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
       </label>
-      <label>
+      <br></br>
+      <label className='alignText'>
         Have you lost or found this pet:
         <select name="type" value={status} onChange={(e) => setStatus(e.target.value)}>
           <option value="" disabled>-Select-</option>
@@ -97,22 +99,27 @@ const NewPost = () => {
           <option value="found">Found a Pet</option>
         </select>
       </label>
-      <label>
+      <br></br>
+      <label className='alignText'>
         Pet's Name (optional):
         <input type="text" value={petData.name} name="name" onChange={handleInputChange} />
       </label>
-      <label>
+      <br></br>
+      <label className='alignText'>
         Image (optional):
         <input type="text" value={petData.img} name="img" onChange={handleInputChange} />
       </label>
-      <label>
+      <br></br>
+      <label className='alignText'>
         Last Seen Location:
         <input type="text" value={petData.lastSeen} name="lastSeen" onChange={handleInputChange} />
       </label>
-      <label>
+      <br></br>
+      <label className='alignText'>
         Species:
         <input type="text" value={petData.species} name="species" onChange={handleInputChange} />
       </label>
+      <br></br>
       <button type="submit">Create Post</button>
     </form>
   );

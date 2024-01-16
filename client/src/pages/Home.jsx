@@ -29,13 +29,13 @@ const Home = () => {
     return(
         <div className='center'>
             <div className='lostfound'>
-                <button className='lostbtn' onClick={() => lostPets()}>Lost</button>
-                <button className='foundbtn' onClick={() => foundPets()}>Found</button>
+                <button className='lostfoundBtns' onClick={() => lostPets()}>Lost</button>
+                <button className='lostfoundBtns' onClick={() => foundPets()}>Found</button>
             </div>
             {wait1 || wait2 ? <h2>Loading...</h2> : null}
             {loadPosts.length
-            ? `Viewing ${loadPosts.length} pet ${loadPosts.length === 1 ? 'post' : 'posts'}:`
-            : 'There are no pet posts available!'}
+            ? <h2 className='alignText'>Viewing {loadPosts.length} pet {loadPosts.length === 1 ? 'post' : 'posts'}:</h2>
+            : <h2 className='alignText'>There are no pet posts available!</h2>}
             {loadPosts.map((post) => {
                 return (
                 <div className='postLayout' key={post._id} postid={post._id} onClick={goToPost}>
