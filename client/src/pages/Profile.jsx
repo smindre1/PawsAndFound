@@ -9,6 +9,9 @@ import Auth from '../../utils/auth';
 const Profile = () => {
   const { loading, data } = useQuery(GET_ME);
   const user = data?.me || {};
+  if(!loading) {
+    console.log(user)
+  }
 
   // If not logged in redirects to homepage
   // !Auth.loggedIn() ? <Redirect to="/" /> : alert("Please login");
@@ -16,23 +19,23 @@ const Profile = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-  const [delPost, { error }] = useMutation(DEL_POST);
+  // const [delPost, { error }] = useMutation(DEL_POST);
 
 
-  const deletePost = async (postId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-    // if (!token) {
-    //   return <Redirect to="/" />;
-    // }
+  // const deletePost = async (postId) => {
+  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
+  //   // if (!token) {
+  //   //   return <Redirect to="/" />;
+  //   // }
     
-    try {
-      const { data } = await delPost({
-        variables: { postId },
-      });
-      } catch (err) {
-        console.error(err);
-      }
-  }
+  //   try {
+  //     const { data } = await delPost({
+  //       variables: { postId },
+  //     });
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  // }
 
   return (
     <div>
@@ -42,15 +45,15 @@ const Profile = () => {
         </h2>
 
         <div>
-          {user.post.map((post) => {
+          {user.post?.map((post) => {
             return (
-              <Link to={`/post/${post._id}`}>
+              <Link key={post._id} to={`/post/${post._id}`}>
                 <div>
                   <h2> {post.pet?.name || "No Pet Name Available"}</h2>
                   <p> {post?.message || "none"}</p>
                   <ul>{post.location || "unknown"}</ul>
                   <p> {post?.pet.species || "unknown"}, {post.pet?.lastseen || "unknown"}, {post.pet?.type || "unknown"}</p>
-                  <img>{post.pet?.img || "no image"}</img>
+                  {/* <img>{post.pet?.img || "no image"}</img> */}
                   <button onClick={() => deletePost(post._id)}>Delete This Post</button>
                 </div>
               </Link>

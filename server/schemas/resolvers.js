@@ -8,7 +8,7 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("posts");
+        return User.findOne({ _id: context.user._id }).populate("post");
       }
       throw AuthenticationError;
     },
@@ -64,7 +64,7 @@ const resolvers = {
           species: pet.species}}
         );
 
-        await User.findOneAndUpdate({ _id: context.user._id }, { $push: { posts: post._id } });
+        await User.findOneAndUpdate({ _id: context.user._id }, { $push: { post: post._id } });
 
         return post;
       }
@@ -77,7 +77,7 @@ const resolvers = {
           username: context.user.username,
         });
 
-        await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { posts: post._id } }); //If this doesn't work you can use the arg
+        await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { post: post._id } }); //If this doesn't work you can use the arg
 
         return post;
       }
