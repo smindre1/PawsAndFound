@@ -64,7 +64,7 @@ const resolvers = {
           species: pet.species}}
         );
 
-        await User.findOneAndUpdate({ _id: context.user._id }, { $addToSet: { post: post._id } });
+        await User.findOneAndUpdate({ _id: context.user._id }, { $push: { posts: post._id } });
 
         return post;
       }
