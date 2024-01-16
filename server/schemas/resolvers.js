@@ -77,18 +77,19 @@ const resolvers = {
           username: context.user.username,
         });
 
-        await User.findOneAndUpdate({ _id: context.user._id }, { $pull: { post: post._id } }); //If this doesn't work you can use the arg
-
+        await User.findOneAndUpdate({ _id: context.user._id },
+           { $pull: { post: post._id } },
+           {new:true});
         return post;
       }
       throw AuthenticationError;
     },
     addReply: async (parent, { postId, message }, context) => {
       if (context.user) {
-        return Post.findByIdAndUpdate(
+        return Post.findOneAndUpdate(
           { _id: postId },
           {
-            $push: {
+            $addToSet: {
               replies: { message, username: context.user.username },
             },
           },
