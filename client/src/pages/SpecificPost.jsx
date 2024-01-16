@@ -53,14 +53,8 @@ const SpecificPost = () => {
   // }
   
   const handleSubmit = async (e) => {
-    e.preventDefault();
     const user = Auth.getProfile()
-    console.log("for Ids of reply", replies);
-    console.log("username: ", user.data.username);
-    console.log("postId: ", postId);
-    replies.map((item) => console.log("item: ", item.username))
     try {
-      console.log(message);
       await addReply({
         variables: {
           postId: postId,
@@ -70,7 +64,6 @@ const SpecificPost = () => {
       });
       // Reset form after successful submission
       setMessage("");
-      window.location.replace(`/post/${postId}`);
     } catch (error) {
       console.error("Error adding reply:", error);
     }
@@ -105,33 +98,5 @@ const SpecificPost = () => {
     </div>
   );
 };
-
-// const ReplyForm = ({ postId }) => {
-//   const [replyText, setReplyText] = useState("");
-//   const [addReply, {error}] = useMutation(ADD_REPLY);
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await addReply({
-//         variables: {
-//           postId: postId,
-//           message: replyText,
-//         },
-//         refetchQueries: [{ query: GET_POST, variables: { postId: postId } }],
-//       });
-//       setReplyText("");
-//     } catch (error) {
-//       console.error("Error adding reply:", error);
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <textarea value={replyText} onChange={(e) => setReplyText(e.target.value)} placeholder="Write your reply..." rows={4} cols={50} required />
-//       <button type="submit">Add Reply</button>
-//     </form>
-//   );
-// };
 
 export default SpecificPost;

@@ -44,10 +44,8 @@ A lost and found pet blog.
 //Users Profile page
 //Deleting posts
 
-//Add replies
- (replylist & replyForm component)
+//Add replies/reload page
 
-//Include username on the post model
 //Seed file
 /Adding images
 //Add dates to posts
