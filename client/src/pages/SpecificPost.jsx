@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 
 import { ADD_REPLY } from "../../utils/mutations";
 import { GET_POST } from "../../utils/queries";
+import Auth from "../../utils/auth";
 
 const SpecificPost = () => {
   const { postId } = useParams();
@@ -19,6 +20,10 @@ const SpecificPost = () => {
     lastSeen: "",
     species: "",
   });
+  //For replies
+  const [replies, setReplies] = useState(null);
+  const [message, setMessage] = useState("");
+  const [addReply, {error}] = useMutation(ADD_REPLY);
   
 
 //This will run every time the loading or data values change
@@ -32,6 +37,8 @@ const SpecificPost = () => {
         lastSeen: data?.post.pet.lastSeen,
         species: data?.post.pet.species,
       })
+      console.log("Data: ", data?.post.replies);
+      setReplies(data?.post.replies);
     }
   }, [loading, data]);
 
@@ -39,43 +46,80 @@ const SpecificPost = () => {
     return <div>Loading...</div>;
   }
 
-  return (
-    <div className="my-3">
-      <h2>Pet's Name: {petData.name || "No name"}</h2>
-      <h2>Location: {mainPost?.location || "none"}</h2>
-      <p>Message: {mainPost?.message || "none"}</p>
-      <p>Species/LastSeen/Status: {petData.species || "none"}, {petData.lastseen || "none"}, {petData.type || "none"}</p>
-      {/* <img>{petData.img || "none"}</img> */}
-    </div>
-  );
-};
-
-const ReplyForm = ({ postId }) => {
-  const [replyText, setReplyText] = useState("");
-  const [addReply] = useMutation(ADD_REPLY);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       await addReply({
         variables: {
           postId: postId,
-          message: replyText,
-        },
-        refetchQueries: [{ query: GET_POST, variables: { postId: postId } }],
+          message: message,
+        }
+        // refetchQueries: [{ query: GET_POST, variables: { postId: postId } }],
       });
-      setReplyText("");
+      // Reset form after successful submission
+      setMessage("");
+      location.reload();
     } catch (error) {
       console.error("Error adding reply:", error);
     }
+
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <textarea value={replyText} onChange={(e) => setReplyText(e.target.value)} placeholder="Write your reply..." rows={4} cols={50} required />
-      <button type="submit">Add Reply</button>
-    </form>
+    <div>
+      <div className="my-3">
+        <h2>Pet's Name: {petData.name || "No name"}</h2>
+        <h2>Location: {mainPost?.location || "none"}</h2>
+        <p>Message: {mainPost?.message || "none"}</p>
+        <p>Species/LastSeen/Status: {petData.species || "none"}, {petData.lastseen || "none"}, {petData.type || "none"}</p>
+        {/* <img>{petData.img || "none"}</img> */}
+      </div>
+      <div>{replies ? (
+    replies.map((item) => (
+      <div key={item._id}>
+        <p>{item.username}</p>
+        <p>{item.message}</p>
+      </div>
+    ))
+  ) : (
+    <p>No replies available</p>)}
+      </div>
+      <form onSubmit={handleSubmit}>
+        <h2>Add your reply here:</h2>
+        <input type="text" value={message} onChange={(e) => setMessage(e.target.value)}></input>
+        <button type="submit">Add Reply</button>
+      </form>
+    </div>
   );
 };
+
+// const ReplyForm = ({ postId }) => {
+//   const [replyText, setReplyText] = useState("");
+//   const [addReply, {error}] = useMutation(ADD_REPLY);
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       await addReply({
+//         variables: {
+//           postId: postId,
+//           message: replyText,
+//         },
+//         refetchQueries: [{ query: GET_POST, variables: { postId: postId } }],
+//       });
+//       setReplyText("");
+//     } catch (error) {
+//       console.error("Error adding reply:", error);
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <textarea value={replyText} onChange={(e) => setReplyText(e.target.value)} placeholder="Write your reply..." rows={4} cols={50} required />
+//       <button type="submit">Add Reply</button>
+//     </form>
+//   );
+// };
 
 export default SpecificPost;

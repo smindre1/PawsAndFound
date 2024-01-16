@@ -44,7 +44,6 @@ A lost and found pet blog.
 //Users Profile page
 //Deleting posts
 
-//specific post page
 //Add replies
  (replylist & replyForm component)
 

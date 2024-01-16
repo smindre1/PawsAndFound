@@ -85,10 +85,10 @@ const resolvers = {
     },
     addReply: async (parent, { postId, message }, context) => {
       if (context.user) {
-        return Post.findOneAndUpdate(
+        return Post.findByIdAndUpdate(
           { _id: postId },
           {
-            $addToSet: {
+            $push: {
               replies: { message, username: context.user.username },
             },
           },
