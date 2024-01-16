@@ -46,37 +46,36 @@ const Header = () => {
             )}
           </Nav>
           {/* </Navbar.Collapse> */}
-
         </Container>
       </Navbar>
       {/* Modal data setup */}
       <Modal className="tab" size="lg" show={showModal} onHide={() => setShowModal(false)} aria-labelledby="signup-modal">
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey="login">
-          <Modal.Header closeButton="close">
-            <Modal.Title id="signup-modal">
-              <Nav variant="pills">
-                <Nav.Item>
-                  <Nav.Link eventKey="login">Login</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="signup">Sign Up</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Modal.Title>
-          </Modal.Header>
-          {/* Login and Signup Forms */}
-          <Modal.Body>
-            <Tab.Content>
-              <Tab.Pane eventKey="login">
-                <LoginForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
-              <Tab.Pane eventKey="signup">
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
-            </Tab.Content>
-          </Modal.Body>
-        </Tab.Container>
+  <Modal.Header classname="close" closeButton="close">
+    <Modal.Title id="signup-modal">
+      <Nav variant="pills" className="navpills">
+        <Nav.Item className="pills">
+          <Nav.Link  eventKey="login">Login</Nav.Link>
+        </Nav.Item >
+        <Nav.Item className="pills">
+          <Nav.Link  eventKey="signup">Sign Up</Nav.Link>
+        </Nav.Item>
+      </Nav>
+    </Modal.Title>
+  </Modal.Header>
+  {/* Login and Signup Forms */}
+  <Modal.Body>
+    <Tab.Content class="content">
+      <Tab.Pane className="pills"eventKey="login">
+        <LoginForm handleModalClose={() => setShowModal(false)} />
+      </Tab.Pane>
+      <Tab.Pane className="pills" eventKey="signup">
+        <SignUpForm handleModalClose={() => setShowModal(false)} />
+      </Tab.Pane>
+    </Tab.Content>
+  </Modal.Body>
+</Tab.Container>
       </Modal>
     </>
   );
