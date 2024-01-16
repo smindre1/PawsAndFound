@@ -42,7 +42,7 @@ const Home = () => {
                     <h2> {post?.location || "none"}</h2>
                     <p> {post?.message || "none"}</p>
                     <p> {post?.pet.species || "none"}, {post.pet?.lastseen || "none"}, {post.pet?.type || "none"}</p>
-                    {/* <img>{post.pet?.img || "none"}</img> */}
+                    <img src={post?.pet.img || "no image"} alt="Description of animal" width="300" height="200"></img>
                 </div>
                 );
             })}
