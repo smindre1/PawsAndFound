@@ -55,6 +55,11 @@ export const DEL_POST = gql`
         lastSeen
         species
       }
+      replies {
+        postId
+        message
+        username
+      }
     }
   }
 `;
