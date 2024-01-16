@@ -46,61 +46,36 @@ const Header = () => {
             )}
           </Nav>
           {/* </Navbar.Collapse> */}
-
-//           <Navbar.Collapse id="navbar" className="d-flex flex-row-reverse">
-//             <Nav className="ml-auto d-flex">
-//               <Nav.Link as={Link} to="/">
-//                 Search For Pets
-//               </Nav.Link>
-//               <Nav.Link as={Link} to="/aboutus">
-//                 About Us
-//               </Nav.Link>
-//               {/* if user is logged in show profile and logout buttons */}
-//               {Auth.loggedIn() ? (
-//                 <>
-//                   <Nav.Link as={Link} to="/me">
-//                     Profile
-//                   </Nav.Link>
-//                   <Nav.Link as={Link} to="/newpost">
-//                     Create Post
-//                   </Nav.Link>
-//                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-//                 </>
-//               ) : (
-//                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-//               )}
-//             </Nav>
-//           </Navbar.Collapse>
         </Container>
       </Navbar>
       {/* Modal data setup */}
       <Modal className="tab" size="lg" show={showModal} onHide={() => setShowModal(false)} aria-labelledby="signup-modal">
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey="login">
-          <Modal.Header closeButton="close">
-            <Modal.Title id="signup-modal">
-              <Nav variant="pills">
-                <Nav.Item>
-                  <Nav.Link eventKey="login">Login</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="signup">Sign Up</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Modal.Title>
-          </Modal.Header>
-          {/* Login and Signup Forms */}
-          <Modal.Body>
-            <Tab.Content>
-              <Tab.Pane eventKey="login">
-                <LoginForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
-              <Tab.Pane eventKey="signup">
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
-            </Tab.Content>
-          </Modal.Body>
-        </Tab.Container>
+  <Modal.Header classname="close" closeButton="close">
+    <Modal.Title id="signup-modal">
+      <Nav variant="pills" className="navpills">
+        <Nav.Item className="pills">
+          <Nav.Link  eventKey="login">Login</Nav.Link>
+        </Nav.Item >
+        <Nav.Item className="pills">
+          <Nav.Link  eventKey="signup">Sign Up</Nav.Link>
+        </Nav.Item>
+      </Nav>
+    </Modal.Title>
+  </Modal.Header>
+  {/* Login and Signup Forms */}
+  <Modal.Body>
+    <Tab.Content class="content">
+      <Tab.Pane className="pills"eventKey="login">
+        <LoginForm handleModalClose={() => setShowModal(false)} />
+      </Tab.Pane>
+      <Tab.Pane className="pills" eventKey="signup">
+        <SignUpForm handleModalClose={() => setShowModal(false)} />
+      </Tab.Pane>
+    </Tab.Content>
+  </Modal.Body>
+</Tab.Container>
       </Modal>
     </>
   );

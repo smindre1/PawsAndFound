@@ -79,7 +79,7 @@ button:hover {
   background-color: #ffe4a5;
   display: flex;
   justify-content: space-evenly;
-  flex-direction: column;
+  flex-direction: row;
   width: 40vw;
   position: absolute;
   opacity: 100%;
@@ -87,13 +87,6 @@ button:hover {
   color: #3d7a11;
   border:#106e2e;
   border-width: 10px;
-  overflow: auto;
-}
-
-.login {
-  margin: 0;
-  padding: 0;
-  overflow: auto;
 }
 
 .center {
@@ -112,4 +105,19 @@ button:hover {
 
 .lostfound {
   justify-content: center;
+}
+.navpills {
+  display: flex;
+}
+.pills {
+  width: 50%;
+}
+
+.content {
+  display: flex;
+}
+
+.close {
+  content: "Close";
+  color: red;
 }
