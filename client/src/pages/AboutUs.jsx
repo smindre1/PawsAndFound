@@ -1,10 +1,11 @@
 import React from 'react';
+import '../index.css';
 
 const AboutUs = () => {
   // Company information
   const yearFounded = 2024;
   const aboutText = 
-  ` We aim to create a widespread communication in order to locate any lost pets in the area, and get them home.
+  `   We aim to create a widespread communication in order to locate any lost pets in the area, and get them home.
   
   When challenged to develop a MERN Stack Single-Page Application, we had brainstormed for hours, contemplating deeply and thoroughly about all we could achieve. With the natural creativity of our team and the months of dedicated education from the Columbia Engineering Bootcamp, there were many options we could fully embrace. All this to say, we decided there was no better way to showcase the culmination of months of difficult work than this application. This website was designed to assist those who have lost one of the most precious things in the world, and reuinite them once again. 
   

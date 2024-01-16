@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import {useQuery} from '@apollo/client'
 import { GET_LOST, GET_FOUND } from '../../utils/queries';
 import { useState } from 'react';
+import "../../src/index.css";
 
 const Home = () => {
     const [loadPosts, setPosts] = useState([]);
@@ -26,10 +27,10 @@ const Home = () => {
     }
 
     return(
-        <div>
-            <div>
-                <button onClick={() => lostPets()}>Lost</button>
-                <button onClick={() => foundPets()}>Found</button>
+        <div className='center'>
+            <div className='lostfound'>
+                <button className='lostbtn' onClick={() => lostPets()}>Lost</button>
+                <button className='foundbtn' onClick={() => foundPets()}>Found</button>
             </div>
             {wait1 || wait2 ? <h2>Loading...</h2> : null}
             {loadPosts.length

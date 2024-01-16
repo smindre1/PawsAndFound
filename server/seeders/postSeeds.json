@@ -1,0 +1,60 @@
+[
+    {
+      "message": "Lost my Golden Retriever in New York!",
+      "location": "New York",
+      "type": "lost",
+      "pet": {
+        "type": "Dog",
+        "name": "Buddy",
+        "lastSeen": "Yesterday",
+        "species": "Golden Retriever"
+      },
+      "replies": [
+        {
+          "message": "Hope you find Buddy soon!",
+          "username": "Alice123"
+        },
+        {
+          "message": "I'll keep an eye out.",
+          "username": "Bob456"
+        }
+      ]
+    },
+    {
+      "message": "Found a Siamese Cat in Lost Angeles!",
+      "location": "Los Angeles",
+      "type": "found",
+      "pet": {
+        "type": "Cat",
+        "name": "Whiskers",
+        "lastSeen": "Today",
+        "species": "Siamese"
+      },
+      "replies": [
+        {
+          "message": "That's great news!",
+          "username": "Charlie789"
+        }
+      ]
+    },
+    {
+      "message": "Lost my Canary in Chicago!",
+      "location": "Chicago",
+      "type": "lost",
+      "pet": {
+        "type": "Bird",
+        "name": "Tweety",
+        "lastSeen": "2 days ago",
+        "species": "Canary"
+      },
+      "replies": []
+    },
+    {
+      "message": "Found a Stray Dog in Houston!",
+      "location": "Houston",
+      "type": "found",
+      "pet": null,
+      "replies": []
+    }
+  ]
+  
