@@ -121,3 +121,56 @@ button:hover {
   content: "Close";
   color: red;
 }
+
+
+/* ------Post CSS------- */
+.postLayout {
+  margin: 30px auto 0 auto;
+  width: 50vw;
+  background-color: antiquewhite;
+  padding: 30px;
+  border: black;
+  border-style: solid;
+  border-radius: 15px;
+}
+
+.alignText {
+ display: flex;
+ justify-content: center;
+ line-height: 3;
+ padding: 0;
+ margin: 0;
+}
+
+.alignImage {
+  display: flex;
+  margin: 0 auto;
+}
+
+.replyLayout {
+  margin: 30px auto 0 auto;
+  width: 50vw;
+  background-color: antiquewhite;
+  padding: 30px;
+  border: black;
+  border-style: solid;
+  border-radius: 20px;
+}
+
+.replyForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto 0 auto;
+  width: 50vw;
+  line-height: 3;
+}
+
+.replyBtn {
+  margin: 10px
+}
+
+.replyInput {
+  width: 40vw;
+  height: 20px
+}
