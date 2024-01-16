@@ -8,45 +8,34 @@ import { GET_POST } from "../../utils/queries";
 
 const SpecificPost = () => {
   const { postId } = useParams();
-  const [post, setPost] = useState({});
+  const [userPosts, setUserPosts] = useState();
   const { loading, data } = useQuery(GET_POST, {
     variables: { postId: postId },
   });
 
   // console.log("Hello");
   // console.log("postId: ", postId);
-  console.log("data: ", data);
+  
+
+
   useEffect(() => {
-    
+
 
     if (!loading && data) {
-      setPost(data?.post || {});
+      console.log("data: ", data.post);
+      setUserPosts(data?.post || {});
+      console.log("post: ", userPosts);
     }
   }, [loading, data]);
 
   if (loading) {
     return <div>Loading...</div>;
-  }
+  } 
 
   return (
     <div className="my-3">
-      <h3 className="card-header bg-dark text-light p-2 m-0">
-        {post.postUser} <br />
-        <span style={{ fontSize: "1rem" }}> reported about this pet on: {post.createdAt}</span>
-      </h3>
-      <div className="bg-light py-4">
-        <blockquote
-          className="p-4"
-          style={{
-            fontSize: "1.5rem",
-            fontStyle: "italic",
-            border: "2px dotted #1a1a1a",
-            lineHeight: "1.5",
-          }}
-        >
-          {post.postText}
-        </blockquote>
-      </div>
+      <h2>{userPosts.message}</h2>
+
 
       {/* <div className="my-5">
         <ReplyList reply={post.reply} />
