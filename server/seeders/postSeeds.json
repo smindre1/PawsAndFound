@@ -1,11 +1,12 @@
 [
     {
+      "username": "Charlie789",
       "message": "Lost my Golden Retriever in New York!",
       "location": "New York",
-      "type": "lost",
       "pet": {
-        "type": "Dog",
+        "type": "lost",
         "name": "Buddy",
+        "img": "https://www.dailypaws.com/thmb/DQfQglzyKWlVSlsDwKPprF2iMSg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/golden-retriever-177213599-2000-a30830f4d2b24635a5d01b3c5c64b9ef.jpg",
         "lastSeen": "Yesterday",
         "species": "Golden Retriever"
       },
@@ -21,12 +22,13 @@
       ]
     },
     {
+      "username":"Alice123",
       "message": "Found a Siamese Cat in Lost Angeles!",
       "location": "Los Angeles",
-      "type": "found",
       "pet": {
-        "type": "Cat",
+        "type": "found",
         "name": "Whiskers",
+        "img": "https://cats.com/wp-content/uploads/2020/10/Oriental-siamese-cat-768x384.jpg",
         "lastSeen": "Today",
         "species": "Siamese"
       },
@@ -38,22 +40,16 @@
       ]
     },
     {
+      "username":"Bob456",
       "message": "Lost my Canary in Chicago!",
       "location": "Chicago",
-      "type": "lost",
       "pet": {
-        "type": "Bird",
+        "type": "lost",
         "name": "Tweety",
+        "img": "https://media-be.chewy.com/wp-content/uploads/2019/02/21172511/iStock-90146117-canary-Davo86-1024x576.jpg",
         "lastSeen": "2 days ago",
         "species": "Canary"
       },
-      "replies": []
-    },
-    {
-      "message": "Found a Stray Dog in Houston!",
-      "location": "Houston",
-      "type": "found",
-      "pet": null,
       "replies": []
     }
   ]

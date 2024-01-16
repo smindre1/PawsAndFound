@@ -1,23 +1,23 @@
 [
     {
-      "_id": "1",
       "username": "Alice123",
-      "email": "alice123@example.com"
+      "email": "alice123@example.com",
+      "password": "123"
     },
     {
-      "_id": "2",
       "username": "Bob456",
-      "email": "bob456@example.com"
+      "email": "bob456@example.com",
+      "password": "pass"
     },
     {
-      "_id": "3",
       "username": "Charlie789",
-      "email": "charlie789@example.com"
+      "email": "charlie789@example.com",
+      "password": "word"
     },
     {
-      "_id": "4",
       "username": "David012",
-      "email": "david012@example.com"
+      "email": "david012@example.com",
+      "password": "321"
     }
   ]
   

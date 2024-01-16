@@ -19,7 +19,7 @@ const typeDefs = `
     type Pets {
         type: String!
         name: String
-        img: String!
+        img: String
         lastSeen: String!
         species: String!
     }
@@ -38,7 +38,7 @@ const typeDefs = `
     input PetData {
         type: String!
         name: String
-        img: String!
+        img: String
         lastSeen: String!
         species: String!
     }
