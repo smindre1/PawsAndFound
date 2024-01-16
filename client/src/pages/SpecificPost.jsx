@@ -24,6 +24,7 @@ const SpecificPost = () => {
   const [replies, setReplies] = useState(null);
   const [message, setMessage] = useState("");
   const [addReply, {error}] = useMutation(ADD_REPLY);
+  const [replyKey, setReplyKey] =useState(0);
   
 
 //This will run every time the loading or data values change
@@ -46,20 +47,30 @@ const SpecificPost = () => {
     return <div>Loading...</div>;
   }
 
+  // const replyListKey = () => {
+  //   const count = replyKey + 1;
+  //   setReplyKey(count);
+  // }
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const user = Auth.getProfile()
+    console.log("for Ids of reply", replies);
+    console.log("username: ", user.data.username);
+    console.log("postId: ", postId);
+    replies.map((item) => console.log("item: ", item.username))
     try {
+      console.log(message);
       await addReply({
         variables: {
           postId: postId,
           message: message,
+          username: user.data.username
         }
-        // refetchQueries: [{ query: GET_POST, variables: { postId: postId } }],
       });
       // Reset form after successful submission
       setMessage("");
-      location.reload();
+      window.location.replace(`/post/${postId}`);
     } catch (error) {
       console.error("Error adding reply:", error);
     }
@@ -76,12 +87,13 @@ const SpecificPost = () => {
         {/* <img>{petData.img || "none"}</img> */}
       </div>
       <div>{replies ? (
-    replies.map((item) => (
-      <div key={item._id}>
+    replies.map((item) => {
+      return (
+      <div key={replyKey}>
         <p>{item.username}</p>
         <p>{item.message}</p>
       </div>
-    ))
+    )})
   ) : (
     <p>No replies available</p>)}
       </div>
