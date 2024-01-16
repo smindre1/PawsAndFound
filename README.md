@@ -41,13 +41,15 @@ A lost and found pet blog.
 
 
 ## Things to Check:
-//Users Profile page
-//Deleting posts
-
-//Add replies/reload page
 
 //Seed file
+//CSS
+//README.md file
+//Presentation
+
 /Adding images
+
+
 //Add dates to posts
 
 ## Issues

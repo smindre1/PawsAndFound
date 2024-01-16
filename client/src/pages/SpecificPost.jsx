@@ -72,12 +72,12 @@ const SpecificPost = () => {
 
   return (
     <div>
-      <div className="my-3">
-        <h2>Pet's Name: {petData.name || "No name"}</h2>
-        <h2>Location: {mainPost?.location || "none"}</h2>
-        <p>Message: {mainPost?.message || "none"}</p>
-        <p>Species/LastSeen/Status: {petData.species || "none"}, {petData.lastseen || "none"}, {petData.type || "none"}</p>
-        {/* <img>{petData.img || "none"}</img> */}
+      <div  className='postLayout'>
+        <h2 className='alignText'>Pet's Name: {petData.name || "No name"}</h2>
+        <h2 className='alignText'>Location: {mainPost?.location || "none"}</h2>
+        <p className='alignText'>Message: {mainPost?.message || "none"}</p>
+        <p className='alignText'>Species/LastSeen/Status: {petData.species || "none"}, {petData.lastseen || "none"}, {petData.type || "none"}</p>
+        {/* <img className='alignText' src={post?.pet.img || "no image"} alt="Description of animal" width="300" height="200"></img> */}
       </div>
       <div>{replies ? (
     replies.map((item) => {

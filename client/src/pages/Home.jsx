@@ -38,12 +38,12 @@ const Home = () => {
             : 'There are no pet posts available!'}
             {loadPosts.map((post) => {
                 return (
-                <div key={post._id} postid={post._id} onClick={goToPost}>
-                    <h1>Pet's Name: {post.pet?.name || "No name"}</h1>
-                    <h2>Location: {post?.location || "none"}</h2>
-                    <p>Message: {post?.message || "none"}</p>
-                    <p>Species/LastSeen/Status: {post?.pet.species || "none"}, {post.pet?.lastseen || "none"}, {post.pet?.type || "none"}</p>
-                    <img src={post?.pet.img || "no image"} alt="Description of animal" width="300" height="200"></img>
+                <div className='postLayout' key={post._id} postid={post._id} onClick={goToPost}>
+                    <h1 className='alignText'>Pet's Name: {post.pet?.name || "No name"}</h1>
+                    <h2 className='alignText'>Location: {post?.location || "none"}</h2>
+                    <p className='alignText'>Message: {post?.message || "none"}</p>
+                    <p className='alignText'>Species/LastSeen/Status: {post?.pet.species || "none"}, {post.pet?.lastseen || "none"}, {post.pet?.type || "none"}</p>
+                    <img className='alignImage' src={post?.pet.img || "no image"} alt="Description of animal" width="300" height="200"></img>
                 </div>
                 );
             })}

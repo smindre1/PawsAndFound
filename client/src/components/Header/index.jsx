@@ -47,30 +47,6 @@ const Header = () => {
           </Nav>
           {/* </Navbar.Collapse> */}
 
-//           <Navbar.Collapse id="navbar" className="d-flex flex-row-reverse">
-//             <Nav className="ml-auto d-flex">
-//               <Nav.Link as={Link} to="/">
-//                 Search For Pets
-//               </Nav.Link>
-//               <Nav.Link as={Link} to="/aboutus">
-//                 About Us
-//               </Nav.Link>
-//               {/* if user is logged in show profile and logout buttons */}
-//               {Auth.loggedIn() ? (
-//                 <>
-//                   <Nav.Link as={Link} to="/me">
-//                     Profile
-//                   </Nav.Link>
-//                   <Nav.Link as={Link} to="/newpost">
-//                     Create Post
-//                   </Nav.Link>
-//                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-//                 </>
-//               ) : (
-//                 <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-//               )}
-//             </Nav>
-//           </Navbar.Collapse>
         </Container>
       </Navbar>
       {/* Modal data setup */}
