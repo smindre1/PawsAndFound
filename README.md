@@ -10,7 +10,7 @@
 
 - [Issues](#issues)
 
-- [Technology](#technology)
+- [Technologies](#technologies)
 
 - [Usage](#usage)
 
