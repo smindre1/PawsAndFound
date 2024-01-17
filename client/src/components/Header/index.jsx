@@ -52,7 +52,7 @@ const Header = () => {
       <Modal className="tab" size="lg" show={showModal} onHide={() => setShowModal(false)} aria-labelledby="signup-modal">
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey="login">
-  <Modal.Header className="close" closeButton="close">
+  <Modal.Header classname="close" closeButton="close">
     <Modal.Title id="signup-modal">
       <Nav variant="pills" className="navpills">
         <Nav.Item className="pills">

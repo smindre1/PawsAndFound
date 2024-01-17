@@ -120,7 +120,7 @@ const NewPost = () => {
         <input type="text" value={petData.species} name="species" onChange={handleInputChange} />
       </label>
       <br></br>
-      <button type="submit">Create Post</button>
+      <button className="alignImage" type="submit">Create Post</button>
     </form>
   );
 };
