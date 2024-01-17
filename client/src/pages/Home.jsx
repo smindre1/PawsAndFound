@@ -34,8 +34,8 @@ const Home = () => {
             </div>
             {wait1 || wait2 ? <h2>Loading...</h2> : null}
             {loadPosts.length
-            ? <h2 className='alignText'>Viewing {loadPosts.length} pet {loadPosts.length === 1 ? 'post' : 'posts'}:</h2>
-            : <h2 className='alignText'>There are no pet posts available!</h2>}
+            ? <p className='alignText'>Viewing {loadPosts.length} pet {loadPosts.length === 1 ? 'post' : 'posts'}:</p>
+            : <p className='alignText'>There are no pet posts available!</p>}
             {loadPosts.map((post) => {
                 return (
                 <div className='postLayout' key={post._id} postid={post._id} onClick={goToPost}>

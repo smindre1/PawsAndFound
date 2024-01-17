@@ -102,4 +102,4 @@ Contibutors:
 
 ## Deployed Application
 
-[Click here to view the deployed application](
+[Click here to view the deployed application](https://pawsandfound-dd3dbebb5f23.herokuapp.com/)

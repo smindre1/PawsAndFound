@@ -94,16 +94,6 @@ button:hover {
   flex-direction: column;
 }
 
-.lostfound {
-  justify-content: center;
-  display: flex;
-}
-
-.lostfoundBtns {
-  margin: 20px;
-  width: 100px;
-}
-
 .navpills {
   display: flex;
 }
@@ -171,4 +161,14 @@ button:hover {
 .replyInput {
   width: 40vw;
   height: 20px
+}
+
+.lostfound {
+  justify-content: center;
+  display: flex;
+}
+
+.lostfoundBtns {
+  margin: 20px;
+  width: 100px;
 }
