@@ -87,17 +87,11 @@ type User {
 ```
 
 
-## Things to Check:
+## Future Development Ideas:
 
-//Seed file
-//CSS
-//README.md file
-//Presentation
-
-/Adding images
-
-
-//Add dates to posts
+ - Have the user be able to upload or drop in images when creating a post
+ - Add dates for when when a post is created
+ - More inclusive/refined UI
 
 ## Issues
 //If a user is in the middle of making a post and they are logged out it will reload the page/redirect page and erase progress on that user's post.
@@ -126,9 +120,9 @@ type User {
 This application was created as the last group project for Columbia Engineering Coding Bootcamp.
 
 Contibutors: 
-- [Shane Mindreau](https://github.com/smindre1)
-- [Brandon Rivera](https://github.com/BrandonERivera)
-- [Nat Rodriguez](https://github.com/Nat-Rodriguez)
+- [Shane Mindreau](https://github.com/smindre1) [Email](shane27265@gmail.com)
+- [Brandon Rivera](https://github.com/BrandonERivera) [Email](brandonellis.rivera@gmail.com)
+- [Nat Rodriguez](https://github.com/Nat-Rodriguez) [Email](n3rodriguez2001@gmail.com)
 
 ## Deployed Application
 
