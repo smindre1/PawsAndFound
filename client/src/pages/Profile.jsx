@@ -43,15 +43,15 @@ const Profile = () => {
         <div>
           {user.post?.map((post) => {
             return (
-                <div key={post._id}>
+                <div className='postLayout'  key={post._id}>
                 <Link to={`/post/${post._id}`}>
-                  <h2> {post.pet?.name || "No Pet Name Available"}</h2>
-                  <p> {post?.message || "none"}</p>
-                  <ul>{post.location || "unknown"}</ul>
-                  <p> {post?.pet.species || "unknown"}, {post.pet?.lastseen || "unknown"}, {post.pet?.type || "unknown"}</p>
-                  <img src={post?.pet.img || "no image"} alt="Description of animal" width="300" height="200"></img>
+                  <h2 className='alignText'> {post.pet?.name || "No Pet Name Available"}</h2>
+                  <p className='alignText'> {post?.message || "none"}</p>
+                  <ul className='alignText'>{post.location || "unknown"}</ul>
+                  <p className='alignText'> {post?.pet.species || "unknown"}, {post.pet?.lastseen || "unknown"}, {post.pet?.type || "unknown"}</p>
+                  <img className="alignImage"src={post?.pet.img || "no image"} alt="Description of animal" width="300" height="200"></img>
                   </Link>
-                  <button onClick={() => handledeletePost(post._id)}>Delete This Post</button>
+                  <button className="alignText" onClick={() => handledeletePost(post._id)}>Delete This Post</button>
                 </div>
                 
             )
