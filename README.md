@@ -1,6 +1,8 @@
 # Pet-Lost-And-Found
 
- We have created a lost and found pet blog in which users can post and reply about animals they have lost or found.
+Summary: This is a reactive MERN application using Apollo to run GraphQL API queries on our backend server.
+
+Purpose For Our App: We have created a lost and found pet blog in which users can post and reply about animals they have lost or found.
 
 # Table of Contents
 
@@ -18,56 +20,78 @@
 
 - [Deployed Application](#deployed-application)
 
-## Model Plans
-
-	user{ 
-        id
-        username
-        email
-        password
-        posts{}
+## GraphQL TypeDefs (Model Blueprints)
+```
+type User {
+        _id: ID!
+        username: String!
+        email: String!
+        password: String!
+        post: [Post]
     }
 
-	post{
-        id
-        petId
-        message
-        location(city) 
-        [replies]
+    type Post {
+        _id: ID!
+        username: String!
+        message: String!
+        location: String!
+        pet: Pets
+        replies: [Replies]
     }
 
-    replies{
-        id
-        message
-        username ref: User
-        postId ref: Post
+    type Pets {
+        type: String!
+        name: String
+        img: String
+        lastSeen: String!
+        species: String!
     }
 
-    pets{
-        id
-        type{lost, found, shelter}
-        name
-        img
-        lastSeen
-        species
+    type Replies {
+        postId: ID!
+        message: String!
+        username: String!
     }
 
-    shelters{
-    petsList{petId}}
+    type Auth {
+        token: ID!
+        user: User
+    }
+
+    input PetData {
+        type: String!
+        name: String
+        img: String
+        lastSeen: String!
+        species: String!
+    }
+
+    type Query {
+        users: [User]
+        me: User
+        posts: [Post]
+        post(postId: ID!): Post
+        lostPets: [Post]
+        foundPets: [Post]
+    }
+
+    type Mutation {
+        addUser(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
+
+        addPost(username: String!, message: String!, location: String!, pet: PetData): Post
+        delPost(postId: ID!): Post
+               
+        addReply( postId: ID!, message: String!, username: String!): Post
+    }
+```
 
 
+## Future Development Ideas:
 
-## Things to Check:
-
-//Seed file
-//CSS
-//README.md file
-//Presentation
-
-/Adding images
-
-
-//Add dates to posts
+ - Have the user be able to upload or drop in images when creating a post
+ - Add dates for when when a post is created
+ - More inclusive/refined UI
 
 ## Issues
 //If a user is in the middle of making a post and they are logged out it will reload the page/redirect page and erase progress on that user's post.
@@ -96,9 +120,9 @@
 This application was created as the last group project for Columbia Engineering Coding Bootcamp.
 
 Contibutors: 
-- [Shane Mindreau](https://github.com/smindre1)
-- [Brandon Rivera](https://github.com/BrandonERivera)
-- [Nat Rodriguez](https://github.com/Nat-Rodriguez)
+- [Shane Mindreau](https://github.com/smindre1) [Email](shane27265@gmail.com)
+- [Brandon Rivera](https://github.com/BrandonERivera) [Email](brandonellis.rivera@gmail.com)
+- [Nat Rodriguez](https://github.com/Nat-Rodriguez) [Email](n3rodriguez2001@gmail.com)
 
 ## Deployed Application
 
